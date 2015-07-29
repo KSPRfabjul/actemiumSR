@@ -1,0 +1,92 @@
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.superbg {
+	position:fixed;
+    top:0;
+    left:0;
+    z-index:-1;
+}
+
+.content {
+	margin-top: 180px;
+	width: 1920px;
+}
+
+.main-A {
+	margin-top: 10px;
+	margin-left: 3px;
+	margin-right: 3px;
+}
+
+.main-B {
+	margin-top: 5px;
+	margin-left: 3px;
+	margin-right: 3px;
+}
+
+.main-C {
+	margin-top: 5px;
+	margin-bottom: 5px;
+	margin-left: 3px;
+	margin-right: 3px;
+}
+
+.marquee {
+	font-size: 40px;
+}
+
+.carousel-main{
+	min-height: 730px;
+}
+
+.pres{
+	margin-top: 50px;
+}
+
+ul { list-style-image: none;}
+
+#countdown-visits {list-style-type:none; height:50px}
+#countdown-visits li{float:left;background:url(../img/filmstrip.png) 0 0 no-repeat;width:27px;height:51.5px; z-index:3;}
+#countdown-visits li.seperator{background:url(../img/comma.png) 2px 75px no-repeat;width:6px; z-index:3;}
+
+.accident{
+	position: fixed;
+	left: 850px;
+	top: 1015px;
+}
+
+.accident h2{
+	margin-top: 7px;
+	font-size: 25px;
+	font-weight: bold;
+}
+
+.heure{
+	position: fixed;
+	top: 20px;
+	left: 1330px;
+}
+
+.meteo{
+	width:400px;
+	height:250px;
+	margin-right: auto;
+	margin-left: auto;
+	margin-top: 5px;
+}
+
+.rss{
+	margin-top: 10px;
+	height: 250px;
+	overflow: hidden;
+}
+
+.secu{
+	margin-top: 10px;
+}
+
+.img-secu{
+	max-height: 250px;
+}
