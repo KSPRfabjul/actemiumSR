@@ -2,6 +2,12 @@
 
 include '../../lib/includes.php';
 
+
+/**
+ * SELECTION DE TOUS LES DOCUMENTS
+ */
+
+
 include '../../partials/header_index.php'
 
 ?>
