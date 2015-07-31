@@ -63,7 +63,7 @@ $(document).ready(function(){
         format: 'yyyy-mm-dd'
     });
 
-    $(".LienModalDetailVisite").click(function(){
+    $(document).on('click', '.LienModalDetailVisite', function(){
 
         console.log("Modal : " + $(this).attr("rel"));
 
@@ -82,7 +82,7 @@ $(document).ready(function(){
         });
     });
 
-    $(".LienModalDetailVisiteur").click(function(){
+    $(document).on('click', '.LienModalDetailVisiteur', function(){
 
         console.log("Modal : " + $(this).attr("rel"));
 
@@ -101,7 +101,7 @@ $(document).ready(function(){
         });
     });
 
-    $(".LienModalVisite").click(function(){
+    $(document).on('click', '.LienModalVisite', function(){
 
         console.log("Modal : " + $(this).attr("rel"));
 
@@ -251,6 +251,147 @@ $(document).ready(function(){
             },
             success:function(data){
                 $(".modalBody").fadeIn(1000).html(data);
+            }
+        });
+    });
+
+    
+    $(document).on('click', '.LienModalDoc', function(){
+
+        console.log("Modal bis: " + $(this).attr("rel"));
+
+        var id = $(this).attr("rel");
+        $(".modalBody").fadeIn(1000).html('<div style="text-align:center; margin-right:auto; margin-left:auto">Patientez...</div>');
+        $.ajax({
+            type:"POST",
+            data:{id : id},
+            url:"modif_fichiers_doc.php",
+            error:function(msg){
+                $(".modalBody").addClass("tableau_msg_erreur").fadeOut(800).fadeIn(800).fadeOut(400).fadeIn(400).html('<div style="margin-right:auto; margin-left:auto; text-align:center">Impossible de charger cette page</div>');
+            },
+            success:function(data){
+                $(".modalBody").fadeIn(1000).html(data);
+            }
+        });
+    });
+
+    
+    $(document).on('click', '.LienNomenclature', function(){
+
+        console.log("Modal bis: " + $(this).attr("rel"));
+
+        var id = $(this).attr("rel");
+        $(".modalBody").fadeIn(1000).html('<div style="text-align:center; margin-right:auto; margin-left:auto">Patientez...</div>');
+        $.ajax({
+            type:"POST",
+            data:{id : id},
+            url:"modif_nomenclature.php",
+            error:function(msg){
+                $(".modalBody").addClass("tableau_msg_erreur").fadeOut(800).fadeIn(800).fadeOut(400).fadeIn(400).html('<div style="margin-right:auto; margin-left:auto; text-align:center">Impossible de charger cette page</div>');
+            },
+            success:function(data){
+                $(".modalBody").fadeIn(1000).html(data);
+            }
+        });
+    });
+    
+    $(document).on('keyup', '#searchNomFichier', function(){
+
+		var n = encodeURIComponent( $('#searchNomFichier').val() );
+        var r = encodeURIComponent( $('#searchRef').val() );
+        var f = encodeURIComponent( $('#searchFabricant').val() );
+         
+        var data = {
+            "nom": n,
+            "ref": r,
+            "fabricant": f
+        };
+
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            url: "search_fichiers.php",
+            data: data,
+            success: function(data) {
+                console.log(data);
+                
+				$("#tableFichierTech tbody tr").remove();
+
+                $.each(data.fichiers, function(idx, fichier){
+                    $("#tableFichierTech").append("<tr><td>" + fichier.id + "</td><td>" + fichier.nom + fichier.extension + "</td><td>" + fichier.nom_produit + "</td><td>" + fichier.ref + "</td><td>" + fichier.fabricant + "</td><td>" + fichier.date + "</td><td><button type=\"button\" class=\"btn btn-primary LienModalDoc\" id=\"LienModalDoc\" data-toggle=\"modal\" data-target=\"#modalModif\" rel=\"" + fichier.id + "\">Modifier</button> <a href=\"?delete=" + fichier.id + "\" class=\"btn btn-default\" onclick=\"return confirm('Sur de sur ?');\">Supprimer</a> <a href=\"?download=" + fichier.id + "\" class=\"btn btn-default\"><i class=\"fa fa-download\"></i></a></td></tr>");
+                });
+
+
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                console.log("ERROR : " + textStatus);
+            }
+        });
+    });
+    
+    $(document).on('keyup', '#searchRef', function(){
+
+		var n = encodeURIComponent( $('#searchNomFichier').val() );
+        var r = encodeURIComponent( $('#searchRef').val() );
+        var f = encodeURIComponent( $('#searchFabricant').val() );
+         
+        var data = {
+            "nom": n,
+            "ref": r,
+            "fabricant": f
+        };
+
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            url: "search_fichiers.php",
+            data: data,
+            success: function(data) {
+                console.log(data);
+                
+				$("#tableFichierTech tbody tr").remove();
+				
+                $.each(data.fichiers, function(idx, fichier){
+                    $("#tableFichierTech").append("<tr><td>" + fichier.id + "</td><td>" + fichier.nom + fichier.extension + "</td><td>" + fichier.nom_produit + "</td><td>" + fichier.ref + "</td><td>" + fichier.fabricant + "</td><td>" + fichier.date + "</td><td><button type=\"button\" class=\"btn btn-primary LienModalDoc\" id=\"LienModalDoc\" data-toggle=\"modal\" data-target=\"#modalModif\" rel=\"" + fichier.id + "\">Modifier</button> <a href=\"?delete=" + fichier.id + "\" class=\"btn btn-default\" onclick=\"return confirm('Sur de sur ?');\">Supprimer</a> <a href=\"?download=" + fichier.id + "\" class=\"btn btn-default\"><i class=\"fa fa-download\"></i></a></td></tr>");
+                });
+
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                console.log("ERROR : " + textStatus);
+            }
+        });
+    });
+    
+    $(document).on('keyup', '#searchFabricant', function(){
+
+		var n = encodeURIComponent( $('#searchNomFichier').val() );
+        var r = encodeURIComponent( $('#searchRef').val() );
+        var f = encodeURIComponent( $('#searchFabricant').val() );
+         
+        var data = {
+            "nom": n,
+            "ref": r,
+            "fabricant": f
+        };
+
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            url: "search_fichiers.php",
+            data: data,
+            success: function(data) {
+                console.log(data);
+                
+				$("#tableFichierTech tbody tr").remove();
+
+                $.each(data.fichiers, function(idx, fichier){
+                    $("#tableFichierTech").append("<tr><td>" + fichier.id + "</td><td>" + fichier.nom + fichier.extension + "</td><td>" + fichier.nom_produit + "</td><td>" + fichier.ref + "</td><td>" + fichier.fabricant + "</td><td>" + fichier.date + "</td><td><button type=\"button\" class=\"btn btn-primary LienModalDoc\" id=\"LienModalDoc\" data-toggle=\"modal\" data-target=\"#modalModif\" rel=\"" + fichier.id + "\">Modifier</button> <a href=\"?delete=" + fichier.id + "\" class=\"btn btn-default\" onclick=\"return confirm('Sur de sur ?');\">Supprimer</a> <a href=\"?download=" + fichier.id + "\" class=\"btn btn-default\"><i class=\"fa fa-download\"></i></a></td></tr>");
+                });
+
+
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                console.log("ERROR : " + textStatus);
             }
         });
     });

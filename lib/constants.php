@@ -11,10 +11,12 @@ if(count($url) == 1){
 
 define('IMAGES', WWW_ROOT . DIRECTORY_SEPARATOR . 'img');
 
-define ('SERVER', '/Users/Julien/Documents/Corail/Application/Serveur/BE/');
-define ('SERVER_SRC', '/Users/Julien/Documents/Corail/Application/Serveur/BE/_DEFAULT_');
+define ('SERVER', '/Users/Julien/Documents/Corail/Application/Serveur/BE/FICHIERS/');
+define ('SERVER_SRC', '/Users/Julien/Documents/Corail/Application/Serveur/BE/FICHIERS/_DEFAULT_');
 
 define ('SRC_MATRICE','/Users/Julien/Documents/Corail/Application/Serveur/MATRICE/');
 
 define ('SRC_USB', '/Volumes/');
+
+define('SRC_DOC','/Users/Julien/Documents/Corail/Application/Serveur/BE/DOC TECHNIQUES');
 

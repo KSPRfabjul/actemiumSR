@@ -146,10 +146,11 @@ if(isset($_POST['hidden'])){
 		    
 		}
 		
+		setFlash('Fichier modifié');
+	    header('Location:' . WEBROOT . 'modules/documents/matrice_doc.php');
+	    die();
+		
 	}
-	setFlash('Fichier modifié');
-    header('Location:' . WEBROOT . 'modules/documents/matrice_doc.php');
-    die();
 
 }
 

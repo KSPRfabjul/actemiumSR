@@ -1,8 +1,8 @@
 $(document).ready(function(){
 
-    $("#searchNom").keyup(function(){
+    $(document).on('keyup', '#searchNom', function(){
 
-        var n = encodeURIComponent( $('#searchNom').val() );
+		var n = encodeURIComponent( $('#searchNom').val() );
         var e = encodeURIComponent( $('#searchEntreprise').val() );
         var data = {
             "nom": n,
@@ -18,7 +18,7 @@ $(document).ready(function(){
                 console.log(JSON.stringify(data.visiteurs));
                 $("#tableVisiteurs tbody tr").remove();
                 $.each(data.visiteurs, function(idx, visiteur){
-                    $("#tableVisiteurs").append("<tr><td>" + visiteur.nom + " " + visiteur.prenom + "</td><td>" + visiteur.entreprise + "</td><td>" + visiteur.mail + "</td><td>" + visiteur.telephone + "</td><td><a href=\"?info=" + visiteur.id + "\" class=\"btn btn-default btn-sm\">Plus d'info.</a></td></tr>");
+                    $("#tableVisiteurs").append("<tr><td>" + visiteur.nom + " " + visiteur.prenom + "</td><td>" + visiteur.entreprise + "</td><td>" + visiteur.mail + "</td><td>" + visiteur.telephone + "</td><td><button type=\"button\" class=\"btn btn-default btn-sm LienModalDetailVisiteur\" id=\"#LienModalDetailVisiteur\" data-toggle=\"modal\" data-target=\"#modalVisiteur\" rel=\"" + visiteur.id + "\">Plus d'info.</button></td></tr>");
                     console.log("NOM : " + visiteur.nom + " ENTREPRISE : " + visiteur.entreprise);
                 });
             },
@@ -28,7 +28,7 @@ $(document).ready(function(){
         });
     });
 
-    $("#searchEntreprise").keyup(function(){
+    $(document).on('keyup', '#searchEntreprise', function(){
 
         var n = encodeURIComponent( $('#searchNom').val() );
         var e = encodeURIComponent( $('#searchEntreprise').val() );
@@ -46,7 +46,7 @@ $(document).ready(function(){
                 console.log(JSON.stringify(data.visiteurs));
                 $("#tableVisiteurs tbody tr").remove();
                 $.each(data.visiteurs, function(idx, visiteur){
-                    $("#tableVisiteurs").append("<tr><td>" + visiteur.nom + " " + visiteur.prenom + "</td><td>" + visiteur.entreprise + "</td><td>" + visiteur.mail + "</td><td>" + visiteur.telephone + "</td><td><a href=\"?info=" + visiteur.id + "\" class=\"btn btn-default btn-sm\">Plus d'info.</a></td></tr>");
+                    $("#tableVisiteurs").append("<tr><td>" + visiteur.nom + " " + visiteur.prenom + "</td><td>" + visiteur.entreprise + "</td><td>" + visiteur.mail + "</td><td>" + visiteur.telephone + "</td><td><button type=\"button\" class=\"btn btn-default btn-sm LienModalDetailVisiteur\" id=\"#LienModalDetailVisiteur\" data-toggle=\"modal\" data-target=\"#modalVisiteur\" rel=\"" + visiteur.id + "\">Plus d'info.</button></td></tr>");
                     console.log("NOM : " + visiteur.nom + " ENTREPRISE : " + visiteur.entreprise);
                 });
             },
